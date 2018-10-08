@@ -25,38 +25,6 @@ def connection():
     else:
         return False
 
-
-
-def insertvalue(usrname,passwd):
-    query = "INSERT INTO logindetails(user, password) VALUES(%s,%s)"
-    args = (usrname,passwd);
-    cursor = conn.cursor(); 
-    cursor.execute(query,args);
-    conn.commit();
-
-
-def retreiveall():
-    query = "SELECT * FROM logindetails";
-    cursor =  conn.cursor();
-    cursor.execute(query)
-    rows = cursor.fetchall();
-    print("No of Record: ", cursor.rowcount)
-    print(rows)
-    for row in rows:
-        print(row);
-
-
-def retreiveone():
-    query = "SELECT * FROM logindetails";
-    cursor =  conn.cursor();
-    cursor.execute(query)
-    row = cursor.fetchone()
-    print("No of Record: ", cursor.rowcount)
-    while row is not None:
-        row = cursor.fetchone()
-        print(row)
-
-
 def create_database():
     if connection():
         mycursor = conn.cursor()
@@ -81,6 +49,7 @@ def create_table():
     else:
         print(bcolors.FAIL + "\n Error: Could not connect to mysql server \n" + bcolors.ENDC)
 
+    conn_db.close()
 
 
 def insert_values():
@@ -110,6 +79,7 @@ def insert_values():
             print(bcolors.FAIL + "\n Error: Could not insert the values \n" + bcolors.ENDC)
     else:
         print(bcolors.FAIL + "\n Error: Could not connect to mysql server \n" + bcolors.ENDC)
+    conn_db.close()
 
 
 
@@ -130,6 +100,7 @@ def alter_table():
             print(bcolors.FAIL + "\n WARNING: column already exists in table \n" + bcolors.ENDC)
     else:
         print(bcolors.FAIL + "\n Error: Could not connect to mysql server \n" + bcolors.ENDC)
+    conn_db.close()
 
 
 def truncate_table():
@@ -147,6 +118,7 @@ def truncate_table():
             print(bcolors.FAIL + "\n WARNING: could not drop table \n" + bcolors.ENDC)
     else:
         print(bcolors.FAIL + "\n Error: Could not connect to mysql server \n" + bcolors.ENDC)
+    conn_db.close()
 
 
 def display_values():
@@ -164,6 +136,7 @@ def display_values():
             print(bcolors.FAIL + "\n WARNING: could not print table \n" + bcolors.ENDC)
     else:
         print(bcolors.FAIL + "\n Error: Could not connect to mysql server \n" + bcolors.ENDC)
+    conn_db.close()
 
 def valid_date(date_text):
     try:
