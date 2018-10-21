@@ -1,6 +1,5 @@
 import mysql.connector
 import sys 
-import getopt
 import datetime
 global conn,cursor;
 
